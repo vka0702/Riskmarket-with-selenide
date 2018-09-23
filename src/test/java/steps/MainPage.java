@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.$;
+import static java.lang.String.valueOf;
 
 public class MainPage {
 //    public MainPage(WebDriver driver) {
@@ -44,11 +45,10 @@ public class MainPage {
     public void insertOneTourist(String dateOfBirth) {
         inputTourist.click();
         dateOfBirthFirstTourist.click();
-        //dateOfBirthFirstTourist.sendKeys(dateOfBirth);
-        String [] subStr = dateOfBirth.split("-");
-        dateOfBirthFirstTourist.sendKeys(subStr[0]);
-        dateOfBirthFirstTourist.sendKeys(subStr[1]);
-        dateOfBirthFirstTourist.sendKeys(subStr[2]);
+        char [] subSt = dateOfBirth.toCharArray();
+        for (int i=0; i<subSt.length; i++) {
+            dateOfBirthFirstTourist.sendKeys(valueOf(subSt[i]));
+        }
         Selenide.sleep(4000);
         dateOfBirthFirstTourist.sendKeys(Keys.ENTER);
     }
